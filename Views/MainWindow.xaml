@@ -52,7 +52,7 @@
                                     <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
                                         <Image Source="/icon.ico" Width="16" Height="16" VerticalAlignment="Center" Margin="0,0,8,0"/>
                                         <TextBlock Text="{Binding WindowTitle}" FontSize="12" 
-                                                   Foreground="{StaticResource TextDimBrush}" VerticalAlignment="Center"/>
+                                                   Foreground="{StaticResource TextBrush}" VerticalAlignment="Center"/>
                                     </StackPanel>
                     
                     <!-- Window Controls -->

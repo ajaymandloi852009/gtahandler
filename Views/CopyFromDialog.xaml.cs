@@ -103,81 +103,35 @@ public partial class CopyFromDialog : Window
         var parts = line.Split(new[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
 
         // Validate column count based on game type
-        int expectedColumns = _gameType switch
+        int minColumns = _gameType switch
         {
-            GameType.GTA3 => 32,
+            GameType.GTA3 => 31,
             GameType.GTAVC => 32,
-            GameType.GTASA => 36,
-            _ => 32
+            GameType.GTASA => 35,
+            _ => 31
         };
 
-        if (parts.Length < expectedColumns)
+        if (parts.Length < minColumns)
         {
-            throw new Exception($"Expected {expectedColumns} columns, found {parts.Length}");
+            throw new Exception($"Expected at least {minColumns} columns for {_gameType.GetDisplayName()}, found {parts.Length}");
         }
 
         var vehicle = new VehicleHandling();
+        vehicle.GameType = _gameType;
 
         try
         {
-            int i = 0;
-            vehicle.Identifier = parts[i++];
-            vehicle.Mass = ParseFloat(parts[i++]);
-            vehicle.TurnMassOrDimensionX = ParseFloat(parts[i++]);
-            vehicle.DragMultOrDimensionY = ParseFloat(parts[i++]);
-            vehicle.CentreOfMassX = ParseFloat(parts[i++]);
-            vehicle.CentreOfMassY = ParseFloat(parts[i++]);
-            vehicle.CentreOfMassZ = ParseFloat(parts[i++]);
-            vehicle.PercentSubmerged = ParseInt(parts[i++]);
-            vehicle.TractionMultiplier = ParseFloat(parts[i++]);
-            vehicle.TractionLoss = ParseFloat(parts[i++]);
-            vehicle.TractionBias = ParseFloat(parts[i++]);
-            vehicle.NumberOfGears = ParseInt(parts[i++]);
-            vehicle.MaxVelocity = ParseFloat(parts[i++]);
-            vehicle.EngineAcceleration = ParseFloat(parts[i++]);
-
-            if (_gameType == GameType.GTASA)
+            switch (_gameType)
             {
-                vehicle.EngineInertia = ParseFloat(parts[i++]);
-            }
-
-            vehicle.DriveType = ParseDriveType(parts[i++]);
-            vehicle.EngineType = ParseEngineType(parts[i++]);
-            vehicle.BrakeDeceleration = ParseFloat(parts[i++]);
-            vehicle.BrakeBias = ParseFloat(parts[i++]);
-            vehicle.HasABS = ParseInt(parts[i++]) != 0;
-            vehicle.SteeringLock = ParseFloat(parts[i++]);
-            vehicle.SuspensionForceLevel = ParseFloat(parts[i++]);
-            vehicle.SuspensionDampingLevel = ParseFloat(parts[i++]);
-
-            if (_gameType == GameType.GTASA)
-            {
-                vehicle.SuspensionHighSpeedComDamp = ParseFloat(parts[i++]);
-            }
-
-            vehicle.SuspensionUpperLimit = ParseFloat(parts[i++]);
-            vehicle.SuspensionLowerLimit = ParseFloat(parts[i++]);
-            vehicle.SuspensionBias = ParseFloat(parts[i++]);
-
-            if (_gameType == GameType.GTASA)
-            {
-                vehicle.SuspensionAntiDiveMultiplier = ParseFloat(parts[i++]);
-            }
-
-            vehicle.SeatOffsetDistance = ParseFloat(parts[i++]);
-            vehicle.CollisionDamageMultiplier = ParseFloat(parts[i++]);
-            vehicle.MonetaryValue = ParseInt(parts[i++]);
-
-            // Model flags - handle hex (store as string)
-            vehicle.ModelFlags = parts[i++];
-            vehicle.HandlingFlags = parts[i++];
-
-            vehicle.FrontLights = ParseLightType(parts[i++]);
-            vehicle.RearLights = ParseLightType(parts[i++]);
-
-            if (_gameType == GameType.GTASA)
-            {
-                vehicle.AnimGroup = ParseInt(parts[i++]);
+                case GameType.GTA3:
+                    ParseGTA3Line(parts, vehicle);
+                    break;
+                case GameType.GTAVC:
+                    ParseGTAVCLine(parts, vehicle);
+                    break;
+                case GameType.GTASA:
+                    ParseGTASALine(parts, vehicle);
+                    break;
             }
         }
         catch (Exception ex)
@@ -186,6 +140,125 @@ public partial class CopyFromDialog : Window
         }
 
         return vehicle;
+    }
+
+    private void ParseGTA3Line(string[] parts, VehicleHandling v)
+    {
+        int i = 0;
+        v.Identifier = parts[i++];
+        v.Mass = ParseFloat(parts[i++]);
+        v.TurnMassOrDimensionX = ParseFloat(parts[i++]);    // Dimensions.x
+        v.DragMultOrDimensionY = ParseFloat(parts[i++]);    // Dimensions.y
+        v.DimensionZ = ParseFloat(parts[i++]);              // Dimensions.z
+        v.CentreOfMassX = ParseFloat(parts[i++]);
+        v.CentreOfMassY = ParseFloat(parts[i++]);
+        v.CentreOfMassZ = ParseFloat(parts[i++]);
+        v.PercentSubmerged = ParseInt(parts[i++]);
+        v.TractionMultiplier = ParseFloat(parts[i++]);
+        v.TractionLoss = ParseFloat(parts[i++]);
+        v.TractionBias = ParseFloat(parts[i++]);
+        v.NumberOfGears = ParseInt(parts[i++]);
+        v.MaxVelocity = ParseFloat(parts[i++]);
+        v.EngineAcceleration = ParseFloat(parts[i++]);
+        v.DriveType = ParseDriveType(parts[i++]);
+        v.EngineType = ParseEngineType(parts[i++]);
+        v.BrakeDeceleration = ParseFloat(parts[i++]);
+        v.BrakeBias = ParseFloat(parts[i++]);
+        v.HasABS = ParseInt(parts[i++]) != 0;
+        v.SteeringLock = ParseFloat(parts[i++]);
+        v.SuspensionForceLevel = ParseFloat(parts[i++]);
+        v.SuspensionDampingLevel = ParseFloat(parts[i++]);
+        v.SeatOffsetDistance = ParseFloat(parts[i++]);
+        v.CollisionDamageMultiplier = ParseFloat(parts[i++]);
+        v.MonetaryValue = ParseInt(parts[i++]);
+        v.SuspensionUpperLimit = ParseFloat(parts[i++]);
+        v.SuspensionLowerLimit = ParseFloat(parts[i++]);
+        v.SuspensionBias = ParseFloat(parts[i++]);
+        v.ModelFlags = parts[i++];
+        v.FrontLights = ParseLightType(parts[i++]);
+        v.RearLights = ParseLightType(parts[i++]);
+    }
+
+    private void ParseGTAVCLine(string[] parts, VehicleHandling v)
+    {
+        int i = 0;
+        v.Identifier = parts[i++];
+        v.Mass = ParseFloat(parts[i++]);
+        v.TurnMassOrDimensionX = ParseFloat(parts[i++]);    // Dimensions.x
+        v.DragMultOrDimensionY = ParseFloat(parts[i++]);    // Dimensions.y
+        v.DimensionZ = ParseFloat(parts[i++]);              // Dimensions.z
+        v.CentreOfMassX = ParseFloat(parts[i++]);
+        v.CentreOfMassY = ParseFloat(parts[i++]);
+        v.CentreOfMassZ = ParseFloat(parts[i++]);
+        v.PercentSubmerged = ParseInt(parts[i++]);
+        v.TractionMultiplier = ParseFloat(parts[i++]);
+        v.TractionLoss = ParseFloat(parts[i++]);
+        v.TractionBias = ParseFloat(parts[i++]);
+        v.NumberOfGears = ParseInt(parts[i++]);
+        v.MaxVelocity = ParseFloat(parts[i++]);
+        v.EngineAcceleration = ParseFloat(parts[i++]);
+        v.DriveType = ParseDriveType(parts[i++]);
+        v.EngineType = ParseEngineType(parts[i++]);
+        v.BrakeDeceleration = ParseFloat(parts[i++]);
+        v.BrakeBias = ParseFloat(parts[i++]);
+        v.HasABS = ParseInt(parts[i++]) != 0;
+        v.SteeringLock = ParseFloat(parts[i++]);
+        v.SuspensionForceLevel = ParseFloat(parts[i++]);
+        v.SuspensionDampingLevel = ParseFloat(parts[i++]);
+        v.SeatOffsetDistance = ParseFloat(parts[i++]);
+        v.CollisionDamageMultiplier = ParseFloat(parts[i++]);
+        v.MonetaryValue = ParseInt(parts[i++]);
+        v.SuspensionUpperLimit = ParseFloat(parts[i++]);
+        v.SuspensionLowerLimit = ParseFloat(parts[i++]);
+        v.SuspensionBias = ParseFloat(parts[i++]);
+        v.SuspensionAntiDiveMultiplier = ParseFloat(parts[i++]);  // VC has this
+        v.ModelFlags = parts[i++];
+        v.FrontLights = ParseLightType(parts[i++]);
+        v.RearLights = ParseLightType(parts[i++]);
+    }
+
+    private void ParseGTASALine(string[] parts, VehicleHandling v)
+    {
+        int i = 0;
+        v.Identifier = parts[i++];
+        v.Mass = ParseFloat(parts[i++]);
+        v.TurnMassOrDimensionX = ParseFloat(parts[i++]);    // fTurnMass
+        v.DragMultOrDimensionY = ParseFloat(parts[i++]);    // fDragMult
+        v.CentreOfMassX = ParseFloat(parts[i++]);
+        v.CentreOfMassY = ParseFloat(parts[i++]);
+        v.CentreOfMassZ = ParseFloat(parts[i++]);
+        v.PercentSubmerged = ParseInt(parts[i++]);
+        v.TractionMultiplier = ParseFloat(parts[i++]);
+        v.TractionLoss = ParseFloat(parts[i++]);
+        v.TractionBias = ParseFloat(parts[i++]);
+        v.NumberOfGears = ParseInt(parts[i++]);
+        v.MaxVelocity = ParseFloat(parts[i++]);
+        v.EngineAcceleration = ParseFloat(parts[i++]);
+        v.EngineInertia = ParseFloat(parts[i++]);           // SA-specific
+        v.DriveType = ParseDriveType(parts[i++]);
+        v.EngineType = ParseEngineType(parts[i++]);
+        v.BrakeDeceleration = ParseFloat(parts[i++]);
+        v.BrakeBias = ParseFloat(parts[i++]);
+        v.HasABS = ParseInt(parts[i++]) != 0;
+        v.SteeringLock = ParseFloat(parts[i++]);
+        v.SuspensionForceLevel = ParseFloat(parts[i++]);
+        v.SuspensionDampingLevel = ParseFloat(parts[i++]);
+        v.SuspensionHighSpeedComDamp = ParseFloat(parts[i++]);  // SA-specific
+        v.SuspensionUpperLimit = ParseFloat(parts[i++]);
+        v.SuspensionLowerLimit = ParseFloat(parts[i++]);
+        v.SuspensionBias = ParseFloat(parts[i++]);
+        v.SuspensionAntiDiveMultiplier = ParseFloat(parts[i++]);
+        v.SeatOffsetDistance = ParseFloat(parts[i++]);
+        v.CollisionDamageMultiplier = ParseFloat(parts[i++]);
+        v.MonetaryValue = ParseInt(parts[i++]);
+        v.ModelFlags = parts[i++];
+        v.HandlingFlags = parts[i++];                       // SA-specific
+        v.FrontLights = ParseLightType(parts[i++]);
+        v.RearLights = ParseLightType(parts[i++]);
+        if (i < parts.Length)
+        {
+            v.AnimGroup = ParseInt(parts[i]);               // SA-specific
+        }
     }
 
     private float ParseFloat(string s) => float.Parse(s, CultureInfo.InvariantCulture);
