@@ -26,8 +26,17 @@ public class HandlingWriter
 
             if (vehicleMap.TryGetValue(lineNumber, out var vehicle))
             {
-                // Write the modified vehicle line
-                output.AppendLine(GenerateVehicleLine(vehicle, gameType));
+                // Only regenerate line if vehicle was modified, otherwise preserve original formatting
+                if (vehicle.IsModified)
+                {
+                    // Write the modified vehicle line
+                    output.AppendLine(GenerateVehicleLine(vehicle, gameType));
+                }
+                else
+                {
+                    // Preserve original line formatting (tabs, spacing, etc.)
+                    output.AppendLine(originalLines[i]);
+                }
             }
             else
             {
